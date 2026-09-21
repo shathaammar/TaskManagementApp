@@ -1,0 +1,50 @@
+<h2>{{ (isEditMode ? 'TASK_FORM.EDIT_TITLE' : 'TASK_FORM.ADD_TITLE') | translate }}</h2>
+
+<form [formGroup]="TaskForm">
+  <div class="form-group">
+    <label for="title">{{ 'TASK_FORM.TITLE_LABEL' | translate }}</label>
+    <input id="title" formControlName="title"
+      [placeholder]="'TASK_FORM.TITLE_PLACEHOLDER' | translate" />
+  </div>
+
+  <div class="form-group">
+    <label for="status">{{ 'TASK_FORM.STATUS_LABEL' | translate }}</label>
+    <select id="status" formControlName="status">
+      <option value="">{{ 'TASK_FORM.STATUS_PLACEHOLDER' | translate }}</option>
+      <option value="To Do">{{ 'STATUS.TO_DO' | translate }}</option>
+      <option value="In Progress">{{ 'STATUS.IN_PROGRESS' | translate }}</option>
+      <option value="Done">{{ 'STATUS.DONE' | translate }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="priority">{{ 'TASK_FORM.PRIORITY_LABEL' | translate }}</label>
+    <select id="priority" formControlName="priority">
+      <option value="">{{ 'TASK_FORM.PRIORITY_PLACEHOLDER' | translate }}</option>
+      <option value="Low">{{ 'PRIORITY.LOW' | translate }}</option>
+      <option value="Medium">{{ 'PRIORITY.MEDIUM' | translate }}</option>
+      <option value="High">{{ 'PRIORITY.HIGH' | translate }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="dueDate">{{ 'TASK_FORM.DUE_DATE_LABEL' | translate }}</label>
+    <input type="date" id="dueDate" formControlName="dueDate" />
+  </div>
+
+  <div class="form-group">
+    <label for="description">{{ 'TASK_FORM.DESCRIPTION_LABEL' | translate }}</label>
+    <textarea id="description" formControlName="description"
+      [placeholder]="'TASK_FORM.DESCRIPTION_PLACEHOLDER' | translate"></textarea>
+  </div>
+
+  <div class="buttons">
+    <button type="submit" class="save-btn" (click)="onSave()">
+      {{ 'TASK_FORM.SAVE' | translate }}
+    </button>
+
+    <button type="button" class="cancel-btn" (click)="onCancel()">
+      {{ 'TASK_FORM.CANCEL' | translate }}
+    </button>
+  </div>
+</form>

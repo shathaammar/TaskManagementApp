@@ -1,0 +1,48 @@
+<header class="app-header">
+  <h1>{{ 'TASK_DETAILS.TITLE' | translate }}</h1>
+</header>
+
+<main class="container" *ngIf="task">
+  <div class="task-card">
+
+    <h2 class="task-title">{{ task.title }}</h2>
+
+    <div class="task-meta">
+      <div class="meta-item">
+        <span class="label">{{ 'TASK_DETAILS.STATUS' | translate }}</span>
+        <span class="status" [ngClass]="task.status.toLowerCase().replace(' ', '-')">
+          {{ 'STATUS.' + task.status.toUpperCase().replace(' ', '_') | translate }}
+        </span>
+      </div>
+
+      <div class="meta-item">
+        <span class="label">{{ 'TASK_DETAILS.PRIORITY' | translate }}</span>
+        <span class="priority" [ngClass]="task.priority.toLowerCase()">
+          {{ 'PRIORITY.' + task.priority.toUpperCase() | translate }}
+        </span>
+      </div>
+
+      <div class="meta-item">
+        <span class="label">{{ 'TASK_DETAILS.DUE_DATE' | translate }}</span>
+        <span>{{ task.dueDate }}</span>
+      </div>
+
+      <div class="meta-item">
+        <span class="label">{{ 'TASK_DETAILS.CREATED_AT' | translate }}</span>
+        <span>{{ task.createdAt | date:'mediumDate' }}</span>
+      </div>
+    </div>
+
+    <div class="task-description">
+      <h3>{{ 'TASK_DETAILS.DESCRIPTION' | translate }}</h3>
+      <p>{{ task.description || ('TASK_DETAILS.NO_DESCRIPTION' | translate) }}</p>
+    </div>
+
+    <div class="actions">
+      <button class="btn-back" (click)="goBack()">
+        {{ 'TASK_DETAILS.BACK' | translate }}
+      </button>
+    </div>
+
+  </div>
+</main>

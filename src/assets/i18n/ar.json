@@ -1,0 +1,57 @@
+{
+  "APP": {
+    "TITLE": "تطبيق إدارة المهام"
+  },
+  "TASK_LIST": {
+    "SEARCH_PLACEHOLDER": "ابحث بالعنوان",
+    "ALL_STATUS": "كل الحالات",
+    "ALL_PRIORITIES": "كل الأولويات",
+    "ADD_TASK": "إضافة مهمة",
+    "TABLE": {
+      "ID": "الرقم",
+      "TITLE": "العنوان",
+      "ACTIONS": "الإجراءات"
+    },
+    "ACTIONS": {
+      "VIEW": "عرض",
+      "EDIT": "تعديل",
+      "DELETE": "حذف"
+    },
+    "CONFIRM_DELETE": "هل أنت متأكد من حذف هذه المهمة؟"
+  },
+  "TASK_FORM": {
+    "ADD_TITLE": "إضافة مهمة جديدة",
+    "EDIT_TITLE": "تعديل المهمة",
+    "TITLE_LABEL": "العنوان",
+    "TITLE_PLACEHOLDER": "أدخل عنوان المهمة",
+    "STATUS_LABEL": "الحالة",
+    "STATUS_PLACEHOLDER": "اختر الحالة",
+    "PRIORITY_LABEL": "الأولوية",
+    "PRIORITY_PLACEHOLDER": "اختر الأولوية",
+    "DUE_DATE_LABEL": "تاريخ الاستحقاق",
+    "DESCRIPTION_LABEL": "الوصف",
+    "DESCRIPTION_PLACEHOLDER": "أدخل الوصف",
+    "SAVE": "حفظ",
+    "CANCEL": "إلغاء"
+  },
+  "TASK_DETAILS": {
+    "TITLE": "تفاصيل المهمة",
+    "STATUS": "الحالة",
+    "PRIORITY": "الأولوية",
+    "DUE_DATE": "تاريخ الاستحقاق",
+    "CREATED_AT": "تاريخ الإنشاء",
+    "DESCRIPTION": "الوصف",
+    "NO_DESCRIPTION": "لا يوجد وصف.",
+    "BACK": "رجوع"
+  },
+  "STATUS": {
+    "TO_DO": "قيد الانتظار",
+    "IN_PROGRESS": "قيد التنفيذ",
+    "DONE": "مكتمل"
+  },
+  "PRIORITY": {
+    "LOW": "منخفضة",
+    "MEDIUM": "متوسطة",
+    "HIGH": "عالية"
+  }
+}

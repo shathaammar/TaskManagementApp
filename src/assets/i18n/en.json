@@ -1,0 +1,57 @@
+{
+  "APP": {
+    "TITLE": "Tasks Management Application"
+  },
+  "TASK_LIST": {
+    "SEARCH_PLACEHOLDER": "Search by title",
+    "ALL_STATUS": "All Status",
+    "ALL_PRIORITIES": "All Priorities",
+    "ADD_TASK": "Add Task",
+    "TABLE": {
+      "ID": "Id",
+      "TITLE": "Title",
+      "ACTIONS": "Actions"
+    },
+    "ACTIONS": {
+      "VIEW": "View",
+      "EDIT": "Edit",
+      "DELETE": "Delete"
+    },
+    "CONFIRM_DELETE": "Are you sure you want to delete this task?"
+  },
+  "TASK_FORM": {
+    "ADD_TITLE": "Add New Task",
+    "EDIT_TITLE": "Update Task",
+    "TITLE_LABEL": "Title",
+    "TITLE_PLACEHOLDER": "Enter task title",
+    "STATUS_LABEL": "Status",
+    "STATUS_PLACEHOLDER": "Select status",
+    "PRIORITY_LABEL": "Priority",
+    "PRIORITY_PLACEHOLDER": "Select priority",
+    "DUE_DATE_LABEL": "Due Date",
+    "DESCRIPTION_LABEL": "Description",
+    "DESCRIPTION_PLACEHOLDER": "Enter description",
+    "SAVE": "Save",
+    "CANCEL": "Cancel"
+  },
+  "TASK_DETAILS": {
+    "TITLE": "Task Details",
+    "STATUS": "Status",
+    "PRIORITY": "Priority",
+    "DUE_DATE": "Due Date",
+    "CREATED_AT": "Created At",
+    "DESCRIPTION": "Description",
+    "NO_DESCRIPTION": "No description provided.",
+    "BACK": "Back"
+  },
+  "STATUS": {
+    "TO_DO": "To Do",
+    "IN_PROGRESS": "In Progress",
+    "DONE": "Done"
+  },
+  "PRIORITY": {
+    "LOW": "Low",
+    "MEDIUM": "Medium",
+    "HIGH": "High"
+  }
+}
