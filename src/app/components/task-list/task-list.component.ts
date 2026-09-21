@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { TASK_PRIORITIES, TASK_STATUSES, TaskModel, toTranslateSuffix } from '../../models/task.model';
 import { TaskService } from '../../services/task.service';
-import { LanguageService } from '../../services/language.service';
 import { TaskBadgeComponent } from '../task-badge/task-badge.component';
 
 @Component({
@@ -21,15 +20,16 @@ export class TaskListComponent implements OnInit {
   selectedStatus = '';
   selectedPriority = '';
 
+  /** Set while the delete-confirmation dialog is open for this task; null otherwise. */
+  taskPendingDelete: TaskModel | null = null;
+
   readonly statuses = TASK_STATUSES;
   readonly priorities = TASK_PRIORITIES;
   readonly toTranslateSuffix = toTranslateSuffix;
 
   constructor(
     private router: Router,
-    private taskService: TaskService,
-    private translate: TranslateService,
-    public languageService: LanguageService
+    private taskService: TaskService
   ) {}
 
   ngOnInit(): void {
@@ -52,12 +52,38 @@ export class TaskListComponent implements OnInit {
     this.router.navigate(['/tasks', task.id]);
   }
 
-  onDelete(id: number): void {
-    const confirmDelete = confirm(this.translate.instant('TASK_LIST.CONFIRM_DELETE'));
-    if (confirmDelete) {
-      this.taskService.deleteTask(id);
-      this.loadTasks();
+  requestDelete(task: TaskModel): void {
+    this.taskPendingDelete = task;
+  }
+
+  confirmDelete(): void {
+    if (!this.taskPendingDelete) {
+      return;
     }
+    this.taskService.deleteTask(this.taskPendingDelete.id);
+    this.taskPendingDelete = null;
+    this.loadTasks();
+  }
+
+  cancelDelete(): void {
+    this.taskPendingDelete = null;
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (this.taskPendingDelete) {
+      this.cancelDelete();
+    }
+  }
+
+  clearFilters(): void {
+    this.searchTitle = '';
+    this.selectedStatus = '';
+    this.selectedPriority = '';
+  }
+
+  get hasActiveFilters(): boolean {
+    return !!(this.searchTitle || this.selectedStatus || this.selectedPriority);
   }
 
   get filteredTasks(): TaskModel[] {

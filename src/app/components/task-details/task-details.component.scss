@@ -1,78 +1,116 @@
-.app-header {
-    background: linear-gradient(90deg, #1f1f1f, #3a3a3a);
-    color: white;
-    padding: 15px 20px;
-    font-size: 13px;
-    text-align: center;
+.page-narrow {
+  max-width: 640px;
 }
 
-.container {
-   max-width: 800px;
-   margin: auto;
-   padding: 30px;
-   align-items: center;
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: var(--space-4);
+}
+
+.back-link:hover {
+  color: var(--color-primary);
+}
+
+.back-arrow {
+  display: inline-block;
+}
+
+/* The app title/direction flips for Arabic (see LanguageService); mirror the arrow glyph too. */
+:host-context([dir="rtl"]) .back-arrow {
+  transform: scaleX(-1);
 }
 
 .task-card {
-  background: #ffffff;
-  border-radius: 10px;
-  padding: 25px;
-  padding-left: 0px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  padding: var(--space-5);
+}
+
+.task-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.task-id {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.task-tags {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
 }
 
 .task-title {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
+  margin: 0 0 var(--space-4);
+  font-size: 22px;
+  word-break: break-word;
 }
 
 .task-meta {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  margin-bottom: 25px;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .meta-item {
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 .label {
-  font-size: 13px;
-  color: #777;
-  margin-bottom: 5px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
-.task-description {
-  margin-top: 20px;
+.value {
+  font-size: 14px;
+  font-weight: 500;
 }
 
-.task-description h3 {
-  margin-bottom: 10px;
-  font-size: 18px;
+.task-description h2 {
+  margin: 0 0 var(--space-2);
+  font-size: 15px;
 }
 
 .task-description p {
+  margin: 0;
   line-height: 1.6;
-  color: #444;
+  color: var(--color-text);
+  white-space: pre-wrap;
 }
 
-
-.actions {
-  margin-top: 25px;
+.empty-state {
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
 }
 
-.btn-back {
-  padding: 8px 18px;
-  border: none;
-  background: #1976d2;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+.empty-state h3 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--color-text-muted);
 }
 
-.btn-back:hover {
-  background: #125ea9;
+@media (max-width: 480px) {
+  .task-meta {
+    grid-template-columns: 1fr;
+  }
 }

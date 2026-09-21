@@ -1,44 +1,40 @@
-<header class="app-header">
-  <h1>{{ 'TASK_DETAILS.TITLE' | translate }}</h1>
-</header>
+<div class="page page-narrow">
+  <button type="button" class="back-link" (click)="goBack()">
+    <span class="back-arrow" aria-hidden="true">&larr;</span> {{ 'TASK_DETAILS.BACK' | translate }}
+  </button>
 
-<main class="container" *ngIf="task">
-  <div class="task-card">
+  <div class="task-card card" *ngIf="task; else notFound">
+    <div class="task-card-top">
+      <span class="task-id">#{{ task.id }}</span>
+      <div class="task-tags">
+        <app-task-badge kind="status" [value]="task.status"></app-task-badge>
+        <app-task-badge kind="priority" [value]="task.priority"></app-task-badge>
+      </div>
+    </div>
 
-    <h2 class="task-title">{{ task.title }}</h2>
+    <h1 class="task-title">{{ task.title }}</h1>
 
     <div class="task-meta">
       <div class="meta-item">
-        <span class="label">{{ 'TASK_DETAILS.STATUS' | translate }}</span>
-        <app-task-badge kind="status" [value]="task.status"></app-task-badge>
-      </div>
-
-      <div class="meta-item">
-        <span class="label">{{ 'TASK_DETAILS.PRIORITY' | translate }}</span>
-        <app-task-badge kind="priority" [value]="task.priority"></app-task-badge>
-      </div>
-
-      <div class="meta-item">
         <span class="label">{{ 'TASK_DETAILS.DUE_DATE' | translate }}</span>
-        <span>{{ task.dueDate }}</span>
+        <span class="value">{{ task.dueDate || ('TASK_DETAILS.NO_DUE_DATE' | translate) }}</span>
       </div>
 
       <div class="meta-item">
         <span class="label">{{ 'TASK_DETAILS.CREATED_AT' | translate }}</span>
-        <span>{{ task.createdAt | date:'mediumDate' }}</span>
+        <span class="value">{{ task.createdAt | date:'mediumDate' }}</span>
       </div>
     </div>
 
     <div class="task-description">
-      <h3>{{ 'TASK_DETAILS.DESCRIPTION' | translate }}</h3>
+      <h2>{{ 'TASK_DETAILS.DESCRIPTION' | translate }}</h2>
       <p>{{ task.description || ('TASK_DETAILS.NO_DESCRIPTION' | translate) }}</p>
     </div>
-
-    <div class="actions">
-      <button class="btn-back" (click)="goBack()">
-        {{ 'TASK_DETAILS.BACK' | translate }}
-      </button>
-    </div>
-
   </div>
-</main>
+
+  <ng-template #notFound>
+    <div class="empty-state card">
+      <h3>{{ 'TASK_DETAILS.NOT_FOUND' | translate }}</h3>
+    </div>
+  </ng-template>
+</div>

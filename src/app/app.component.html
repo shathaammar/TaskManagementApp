@@ -1,1 +1,22 @@
-<router-outlet></router-outlet>
+<div class="app-shell">
+  <header class="app-header">
+    <a class="brand" routerLink="/tasks">{{ 'APP.TITLE' | translate }}</a>
+
+    <div class="language-buttons">
+      <button type="button"
+        [class.active]="languageService.getCurrentLanguage() === 'ar'"
+        (click)="languageService.switchLanguage('ar')">
+        العربية
+      </button>
+      <button type="button"
+        [class.active]="languageService.getCurrentLanguage() === 'en'"
+        (click)="languageService.switchLanguage('en')">
+        English
+      </button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>

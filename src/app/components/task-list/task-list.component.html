@@ -1,21 +1,15 @@
-<header class="app-header">
-  <h1 class="app-title">{{ 'APP.TITLE' | translate }}</h1>
-  <div class="language-buttons">
-    <button 
-      [class.active]="languageService.getCurrentLanguage() === 'ar'"
-      (click)="languageService.switchLanguage('ar')">
-      العربية
-    </button>
-    <button 
-      [class.active]="languageService.getCurrentLanguage() === 'en'"
-      (click)="languageService.switchLanguage('en')">
-      English
+<div class="page">
+  <div class="page-heading">
+    <div>
+      <h1>{{ 'APP.TITLE' | translate }}</h1>
+      <p class="subtitle">{{ 'TASK_LIST.SUBTITLE' | translate: { count: filteredTasks.length } }}</p>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="addTask()">
+      {{ 'TASK_LIST.ADD_TASK' | translate }}
     </button>
   </div>
-</header>
 
-<main class="container">
-  <div class="controls">
+  <div class="toolbar card">
     <input type="text" [(ngModel)]="searchTitle"
       [placeholder]="'TASK_LIST.SEARCH_PLACEHOLDER' | translate"
       class="search-field">
@@ -30,37 +24,58 @@
       <option *ngFor="let p of priorities" [value]="p">{{ 'PRIORITY.' + toTranslateSuffix(p) | translate }}</option>
     </select>
 
-    <button class="btn-add" (click)="addTask()">
-      {{ 'TASK_LIST.ADD_TASK' | translate }}
+    <button type="button" class="btn btn-secondary btn-sm clear-btn" *ngIf="hasActiveFilters" (click)="clearFilters()">
+      {{ 'TASK_LIST.CLEAR_FILTERS' | translate }}
     </button>
   </div>
 
-  <div class="task-table">
-    <table>
-      <thead>
-        <tr>
-          <th>{{ 'TASK_LIST.TABLE.ID' | translate }}</th>
-          <th>{{ 'TASK_LIST.TABLE.TITLE' | translate }}</th>
-          <th>{{ 'TASK_LIST.TABLE.ACTIONS' | translate }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of filteredTasks">
-          <td>{{ item.id }}</td>
-          <td>
-            {{ item.title }}
-            <div class="task-tags">
-              <app-task-badge kind="status" variant="solid" [value]="item.status"></app-task-badge>
-              <app-task-badge kind="priority" variant="solid" [value]="item.priority"></app-task-badge>
-            </div>
-          </td>
-          <td class="actions">
-            <button class="btn-view" (click)="onView(item)">{{ 'TASK_LIST.ACTIONS.VIEW' | translate }}</button>
-            <button class="btn-edit" (click)="onEdit(item)">{{ 'TASK_LIST.ACTIONS.EDIT' | translate }}</button>
-            <button class="btn-delete" (click)="onDelete(item.id)">{{ 'TASK_LIST.ACTIONS.DELETE' | translate }}</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="task-grid" *ngIf="filteredTasks.length; else emptyState">
+    <article class="task-card card" *ngFor="let item of filteredTasks">
+      <div class="task-card-header">
+        <span class="task-id">#{{ item.id }}</span>
+        <div class="task-tags">
+          <app-task-badge kind="status" [value]="item.status"></app-task-badge>
+          <app-task-badge kind="priority" [value]="item.priority"></app-task-badge>
+        </div>
+      </div>
+
+      <h2 class="task-card-title">{{ item.title }}</h2>
+
+      <div class="task-card-actions">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="onView(item)">{{ 'TASK_LIST.ACTIONS.VIEW' | translate }}</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="onEdit(item)">{{ 'TASK_LIST.ACTIONS.EDIT' | translate }}</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="requestDelete(item)">{{ 'TASK_LIST.ACTIONS.DELETE' | translate }}</button>
+      </div>
+    </article>
   </div>
-</main>
+
+  <ng-template #emptyState>
+    <div class="empty-state card">
+      <ng-container *ngIf="taskList.length; else noTasksAtAll">
+        <h3>{{ 'TASK_LIST.EMPTY_NO_MATCHES.TITLE' | translate }}</h3>
+        <p>{{ 'TASK_LIST.EMPTY_NO_MATCHES.BODY' | translate }}</p>
+        <button type="button" class="btn btn-secondary" (click)="clearFilters()">
+          {{ 'TASK_LIST.CLEAR_FILTERS' | translate }}
+        </button>
+      </ng-container>
+      <ng-template #noTasksAtAll>
+        <h3>{{ 'TASK_LIST.EMPTY_NO_TASKS.TITLE' | translate }}</h3>
+        <p>{{ 'TASK_LIST.EMPTY_NO_TASKS.BODY' | translate }}</p>
+        <button type="button" class="btn btn-primary" (click)="addTask()">
+          {{ 'TASK_LIST.ADD_TASK' | translate }}
+        </button>
+      </ng-template>
+    </div>
+  </ng-template>
+</div>
+
+<div class="dialog-backdrop" *ngIf="taskPendingDelete" (click)="cancelDelete()">
+  <div class="dialog card" role="alertdialog" aria-modal="true" [attr.aria-label]="'TASK_LIST.DELETE_DIALOG.TITLE' | translate" (click)="$event.stopPropagation()">
+    <h3>{{ 'TASK_LIST.DELETE_DIALOG.TITLE' | translate }}</h3>
+    <p>{{ 'TASK_LIST.DELETE_DIALOG.BODY' | translate: { title: taskPendingDelete.title } }}</p>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" (click)="cancelDelete()">{{ 'TASK_FORM.CANCEL' | translate }}</button>
+      <button type="button" class="btn btn-danger-solid" (click)="confirmDelete()">{{ 'TASK_LIST.ACTIONS.DELETE' | translate }}</button>
+    </div>
+  </div>
+</div>

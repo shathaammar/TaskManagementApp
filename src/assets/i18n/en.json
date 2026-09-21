@@ -3,29 +3,37 @@
     "TITLE": "Tasks Management Application"
   },
   "TASK_LIST": {
+    "SUBTITLE": "{{count}} task(s)",
     "SEARCH_PLACEHOLDER": "Search by title",
     "ALL_STATUS": "All Status",
     "ALL_PRIORITIES": "All Priorities",
     "ADD_TASK": "Add Task",
-    "TABLE": {
-      "ID": "Id",
-      "TITLE": "Title",
-      "ACTIONS": "Actions"
-    },
+    "CLEAR_FILTERS": "Clear filters",
     "ACTIONS": {
       "VIEW": "View",
       "EDIT": "Edit",
       "DELETE": "Delete"
     },
-    "CONFIRM_DELETE": "Are you sure you want to delete this task?"
+    "EMPTY_NO_TASKS": {
+      "TITLE": "You don't have any tasks yet",
+      "BODY": "Create your first task to get started."
+    },
+    "EMPTY_NO_MATCHES": {
+      "TITLE": "No tasks match your filters",
+      "BODY": "Try a different search term or clear the filters."
+    },
+    "DELETE_DIALOG": {
+      "TITLE": "Delete task?",
+      "BODY": "This will permanently delete \"{{title}}\". This can't be undone."
+    }
   },
   "TASK_FORM": {
     "ADD_TITLE": "Add New Task",
     "EDIT_TITLE": "Update Task",
+    "BACK_TO_TASKS": "Back to tasks",
     "TITLE_LABEL": "Title",
     "TITLE_PLACEHOLDER": "Enter task title",
     "STATUS_LABEL": "Status",
-    "STATUS_PLACEHOLDER": "Select status",
     "PRIORITY_LABEL": "Priority",
     "PRIORITY_PLACEHOLDER": "Select priority",
     "DUE_DATE_LABEL": "Due Date",
@@ -41,14 +49,13 @@
     }
   },
   "TASK_DETAILS": {
-    "TITLE": "Task Details",
-    "STATUS": "Status",
-    "PRIORITY": "Priority",
     "DUE_DATE": "Due Date",
+    "NO_DUE_DATE": "No due date",
     "CREATED_AT": "Created At",
     "DESCRIPTION": "Description",
     "NO_DESCRIPTION": "No description provided.",
-    "BACK": "Back"
+    "BACK": "Back to tasks",
+    "NOT_FOUND": "This task couldn't be found."
   },
   "STATUS": {
     "TO_DO": "To Do",
