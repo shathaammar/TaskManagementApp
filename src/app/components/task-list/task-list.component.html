@@ -44,7 +44,7 @@
       <div class="task-card-actions">
         <button type="button" class="btn btn-secondary btn-sm" (click)="onView(item)">{{ 'TASK_LIST.ACTIONS.VIEW' | translate }}</button>
         <button type="button" class="btn btn-secondary btn-sm" (click)="onEdit(item)">{{ 'TASK_LIST.ACTIONS.EDIT' | translate }}</button>
-        <button type="button" class="btn btn-danger btn-sm" (click)="requestDelete(item)">{{ 'TASK_LIST.ACTIONS.DELETE' | translate }}</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="requestDelete(item, $event)">{{ 'TASK_LIST.ACTIONS.DELETE' | translate }}</button>
       </div>
     </article>
   </div>
@@ -74,7 +74,7 @@
     <h3>{{ 'TASK_LIST.DELETE_DIALOG.TITLE' | translate }}</h3>
     <p>{{ 'TASK_LIST.DELETE_DIALOG.BODY' | translate: { title: taskPendingDelete.title } }}</p>
     <div class="dialog-actions">
-      <button type="button" class="btn btn-secondary" (click)="cancelDelete()">{{ 'TASK_FORM.CANCEL' | translate }}</button>
+      <button type="button" class="btn btn-secondary" #dialogCancelButton (click)="cancelDelete()">{{ 'TASK_FORM.CANCEL' | translate }}</button>
       <button type="button" class="btn btn-danger-solid" (click)="confirmDelete()">{{ 'TASK_LIST.ACTIONS.DELETE' | translate }}</button>
     </div>
   </div>

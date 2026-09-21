@@ -41,6 +41,7 @@
     "DESCRIPTION_PLACEHOLDER": "Enter description",
     "SAVE": "Save",
     "CANCEL": "Cancel",
+    "NOT_FOUND": "This task couldn't be found.",
     "ERRORS": {
       "TITLE_REQUIRED": "Title is required.",
       "TITLE_TOO_LONG": "Title must be 100 characters or fewer.",

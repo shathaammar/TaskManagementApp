@@ -70,4 +70,19 @@ describe('TaskService', () => {
     localStorage.setItem('TaskData', '{not valid json');
     expect(service.getAllTasks()).toEqual([]);
   });
+
+  it('derives the next id from existing tasks when upgrading from data saved before TaskIdCounter existed', () => {
+    // Simulate a pre-existing installation: tasks were saved by an older version
+    // of the app that had no id-counter key at all.
+    localStorage.setItem('TaskData', JSON.stringify([
+      makeTask({ id: 5, title: 'Old task' }),
+      makeTask({ id: 2, title: 'Older task' })
+    ]));
+
+    service.addTask(makeTask({ title: 'New task' }));
+
+    const [newest] = service.getAllTasks();
+    expect(newest.title).toBe('New task');
+    expect(newest.id).toBe(6);
+  });
 });

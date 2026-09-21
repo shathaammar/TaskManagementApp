@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -27,6 +27,11 @@ export class TaskListComponent implements OnInit {
   readonly priorities = TASK_PRIORITIES;
   readonly toTranslateSuffix = toTranslateSuffix;
 
+  @ViewChild('dialogCancelButton') dialogCancelButton?: ElementRef<HTMLButtonElement>;
+
+  /** The Delete button that opened the dialog, so focus can return to it on close. */
+  private deleteTriggerElement: HTMLElement | null = null;
+
   constructor(
     private router: Router,
     private taskService: TaskService
@@ -52,8 +57,11 @@ export class TaskListComponent implements OnInit {
     this.router.navigate(['/tasks', task.id]);
   }
 
-  requestDelete(task: TaskModel): void {
+  requestDelete(task: TaskModel, event: MouseEvent): void {
+    this.deleteTriggerElement = event.currentTarget as HTMLElement;
     this.taskPendingDelete = task;
+    // The dialog only exists in the DOM once *ngIf renders it after this change is detected.
+    setTimeout(() => this.dialogCancelButton?.nativeElement.focus());
   }
 
   confirmDelete(): void {
@@ -63,10 +71,17 @@ export class TaskListComponent implements OnInit {
     this.taskService.deleteTask(this.taskPendingDelete.id);
     this.taskPendingDelete = null;
     this.loadTasks();
+    this.restoreFocusToTrigger();
   }
 
   cancelDelete(): void {
     this.taskPendingDelete = null;
+    this.restoreFocusToTrigger();
+  }
+
+  private restoreFocusToTrigger(): void {
+    this.deleteTriggerElement?.focus();
+    this.deleteTriggerElement = null;
   }
 
   @HostListener('document:keydown.escape')

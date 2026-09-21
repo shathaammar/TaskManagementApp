@@ -58,13 +58,13 @@ The project follows a simple component-based structure:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/task-management-app.git
+git clone https://github.com/shathaammar/TaskManagementApp.git
 ```
 
 ### 2. Navigate to the project folder
 
 ```bash
-cd task-management-app
+cd TaskManagementApp
 ```
 
 ### 3. Install dependencies

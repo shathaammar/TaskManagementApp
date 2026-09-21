@@ -35,6 +35,8 @@ function requiredNotBlank(control: AbstractControl): ValidationErrors | null {
 })
 export class TaskFormComponent implements OnInit {
   isEditMode = false;
+  /** True when an edit URL points at a task that no longer exists (e.g. deleted in another tab). */
+  taskNotFound = false;
   taskForm: FormGroup = this.createForm();
 
   readonly statuses = TASK_STATUSES;
@@ -60,6 +62,7 @@ export class TaskFormComponent implements OnInit {
     const taskId = Number(idParam);
     const taskToEdit = this.taskService.getAllTasks().find(t => t.id === taskId);
     if (!taskToEdit) {
+      this.taskNotFound = true;
       return;
     }
 

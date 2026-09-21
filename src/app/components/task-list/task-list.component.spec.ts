@@ -13,6 +13,11 @@ describe('TaskListComponent', () => {
     return { id: 0, title: '', description: '', status: 'To Do', priority: 'Low', dueDate: '', createdAt: new Date(), ...overrides };
   }
 
+  /** requestDelete only needs a currentTarget to remember and later restore focus to. */
+  function makeDeleteClick(): MouseEvent {
+    return { currentTarget: document.createElement('button') } as unknown as MouseEvent;
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TaskListComponent, TranslateModule.forRoot()],
@@ -63,7 +68,7 @@ describe('TaskListComponent', () => {
     spyOn(taskService, 'deleteTask');
     const [target] = component.taskList;
 
-    component.requestDelete(target);
+    component.requestDelete(target, makeDeleteClick());
     expect(taskService.deleteTask).not.toHaveBeenCalled();
     expect(component.taskPendingDelete).toBe(target);
 
@@ -76,7 +81,7 @@ describe('TaskListComponent', () => {
     const taskService = TestBed.inject(TaskService);
     spyOn(taskService, 'deleteTask');
 
-    component.requestDelete(component.taskList[0]);
+    component.requestDelete(component.taskList[0], makeDeleteClick());
     component.cancelDelete();
 
     expect(taskService.deleteTask).not.toHaveBeenCalled();

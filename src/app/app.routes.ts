@@ -22,5 +22,11 @@ export const routes: Routes = [
         path: 'tasks/:id',
         loadComponent: () => import('./components/task-details/task-details.component')
         .then(m => m.TaskDetailsComponent)
+    },
+    {
+        // Any unmatched URL (typo, stale bookmark) lands back on the task list
+        // instead of rendering a blank page under the header.
+        path: '**',
+        redirectTo: 'tasks'
     }
 ];

@@ -3,7 +3,7 @@
     <span class="back-arrow" aria-hidden="true">&larr;</span> {{ 'TASK_FORM.BACK_TO_TASKS' | translate }}
   </button>
 
-  <div class="card form-card">
+  <div class="card form-card" *ngIf="!taskNotFound; else notFoundState">
     <h1>{{ (isEditMode ? 'TASK_FORM.EDIT_TITLE' : 'TASK_FORM.ADD_TITLE') | translate }}</h1>
 
     <form [formGroup]="taskForm" (ngSubmit)="onSave()">
@@ -24,6 +24,7 @@
           <button type="button" *ngFor="let s of statuses"
             class="status-option"
             [class.active]="status?.value === s"
+            [attr.aria-pressed]="status?.value === s"
             (click)="setStatus(s)">
             {{ 'STATUS.' + toTranslateSuffix(s) | translate }}
           </button>
@@ -68,4 +69,10 @@
       </div>
     </form>
   </div>
+
+  <ng-template #notFoundState>
+    <div class="empty-state card">
+      <h3>{{ 'TASK_FORM.NOT_FOUND' | translate }}</h3>
+    </div>
+  </ng-template>
 </div>
