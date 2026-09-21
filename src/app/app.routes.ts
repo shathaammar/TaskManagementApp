@@ -4,23 +4,23 @@ export const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        loadComponent: () => import('./Components/task-list/task-list.component').then(m => m.TaskListComponent)
+        loadComponent: () => import('./components/task-list/task-list.component').then(m => m.TaskListComponent)
     },
     {
         path: 'tasks',
-        loadComponent: () => import('./Components/task-list/task-list.component').then(m => m.TaskListComponent)
+        loadComponent: () => import('./components/task-list/task-list.component').then(m => m.TaskListComponent)
     },
     {
         path: 'tasks/new',
-        loadComponent: () => import('./Components/task-form/task-form.component').then(m => m.TaskFormComponent)
+        loadComponent: () => import('./components/task-form/task-form.component').then(m => m.TaskFormComponent)
     },
     {
         path: 'tasks/edit/:id',
-        loadComponent: () => import('./Components/task-form/task-form.component').then(m => m.TaskFormComponent)
+        loadComponent: () => import('./components/task-form/task-form.component').then(m => m.TaskFormComponent)
     },
     {
         path: 'tasks/:id',
-        loadComponent: () => import('./Components/task-details/task-details.component')
+        loadComponent: () => import('./components/task-details/task-details.component')
         .then(m => m.TaskDetailsComponent)
     }
 ];

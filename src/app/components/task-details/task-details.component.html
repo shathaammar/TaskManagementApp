@@ -10,16 +10,12 @@
     <div class="task-meta">
       <div class="meta-item">
         <span class="label">{{ 'TASK_DETAILS.STATUS' | translate }}</span>
-        <span class="status" [ngClass]="task.status.toLowerCase().replace(' ', '-')">
-          {{ 'STATUS.' + task.status.toUpperCase().replace(' ', '_') | translate }}
-        </span>
+        <app-task-badge kind="status" [value]="task.status"></app-task-badge>
       </div>
 
       <div class="meta-item">
         <span class="label">{{ 'TASK_DETAILS.PRIORITY' | translate }}</span>
-        <span class="priority" [ngClass]="task.priority.toLowerCase()">
-          {{ 'PRIORITY.' + task.priority.toUpperCase() | translate }}
-        </span>
+        <app-task-badge kind="priority" [value]="task.priority"></app-task-badge>
       </div>
 
       <div class="meta-item">

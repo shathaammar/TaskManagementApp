@@ -1,0 +1,61 @@
+<h2>{{ (isEditMode ? 'TASK_FORM.EDIT_TITLE' : 'TASK_FORM.ADD_TITLE') | translate }}</h2>
+
+<form [formGroup]="taskForm" (ngSubmit)="onSave()">
+  <div class="form-group">
+    <label for="title">{{ 'TASK_FORM.TITLE_LABEL' | translate }}</label>
+    <input id="title" formControlName="title"
+      [placeholder]="'TASK_FORM.TITLE_PLACEHOLDER' | translate" />
+    <span class="error" *ngIf="title?.invalid && title?.touched">
+      <ng-container *ngIf="title?.errors?.['required']">{{ 'TASK_FORM.ERRORS.TITLE_REQUIRED' | translate }}</ng-container>
+      <ng-container *ngIf="title?.errors?.['maxlength']">{{ 'TASK_FORM.ERRORS.TITLE_TOO_LONG' | translate }}</ng-container>
+    </span>
+  </div>
+
+  <!-- A new task always starts at the initial status, so this only shows up when editing. -->
+  <div class="form-group" *ngIf="isEditMode">
+    <label>{{ 'TASK_FORM.STATUS_LABEL' | translate }}</label>
+    <div class="status-toggle" role="group" [attr.aria-label]="'TASK_FORM.STATUS_LABEL' | translate">
+      <button type="button" *ngFor="let s of statuses"
+        class="status-option"
+        [class.active]="status?.value === s"
+        (click)="setStatus(s)">
+        {{ 'STATUS.' + toTranslateSuffix(s) | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="priority">{{ 'TASK_FORM.PRIORITY_LABEL' | translate }}</label>
+    <select id="priority" formControlName="priority">
+      <option value="">{{ 'TASK_FORM.PRIORITY_PLACEHOLDER' | translate }}</option>
+      <option *ngFor="let p of priorities" [value]="p">{{ 'PRIORITY.' + toTranslateSuffix(p) | translate }}</option>
+    </select>
+    <span class="error" *ngIf="priority?.invalid && priority?.touched">
+      {{ 'TASK_FORM.ERRORS.PRIORITY_REQUIRED' | translate }}
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for="dueDate">{{ 'TASK_FORM.DUE_DATE_LABEL' | translate }}</label>
+    <input type="date" id="dueDate" formControlName="dueDate" />
+  </div>
+
+  <div class="form-group">
+    <label for="description">{{ 'TASK_FORM.DESCRIPTION_LABEL' | translate }}</label>
+    <textarea id="description" formControlName="description"
+      [placeholder]="'TASK_FORM.DESCRIPTION_PLACEHOLDER' | translate"></textarea>
+    <span class="error" *ngIf="description?.errors?.['maxlength']">
+      {{ 'TASK_FORM.ERRORS.DESCRIPTION_TOO_LONG' | translate }}
+    </span>
+  </div>
+
+  <div class="buttons">
+    <button type="submit" class="save-btn" [disabled]="taskForm.invalid">
+      {{ 'TASK_FORM.SAVE' | translate }}
+    </button>
+
+    <button type="button" class="cancel-btn" (click)="onCancel()">
+      {{ 'TASK_FORM.CANCEL' | translate }}
+    </button>
+  </div>
+</form>

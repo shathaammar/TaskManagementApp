@@ -60,50 +60,6 @@
 }
 
 
-.status {
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  width: fit-content;
-}
-
-.status.to-do {
-  background: #e9f3ff;
-  color: #1976d2;
-}
-
-.status.in-progress {
-  background: #fff5e6;
-  color: #f57c00;
-}
-
-.status.done {
-  background: #e8f5e9;
-  color: #2e7d32;
-}
-
-.priority {
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  width: fit-content;
-}
-
-.priority.low {
-  background: #e8f5e9;
-  color: #2e7d32;
-}
-
-.priority.medium {
-  background: #fff3e0;
-  color: #ef6c00;
-}
-
-.priority.high {
-  background: #ffebee;
-  color: #c62828;
-}
-
 .actions {
   margin-top: 25px;
 }

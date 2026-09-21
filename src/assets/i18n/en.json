@@ -32,7 +32,13 @@
     "DESCRIPTION_LABEL": "Description",
     "DESCRIPTION_PLACEHOLDER": "Enter description",
     "SAVE": "Save",
-    "CANCEL": "Cancel"
+    "CANCEL": "Cancel",
+    "ERRORS": {
+      "TITLE_REQUIRED": "Title is required.",
+      "TITLE_TOO_LONG": "Title must be 100 characters or fewer.",
+      "PRIORITY_REQUIRED": "Priority is required.",
+      "DESCRIPTION_TOO_LONG": "Description must be 500 characters or fewer."
+    }
   },
   "TASK_DETAILS": {
     "TITLE": "Task Details",

@@ -1,0 +1,34 @@
+.task-badge {
+  display: inline-block;
+  font-size: 12px;
+}
+
+/* Solid variant - used in the task list (white text on a solid color). */
+.task-badge.solid {
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.task-badge.solid.status.to-do { background-color: #95a5a6; }
+.task-badge.solid.status.in-progress { background-color: #3498db; }
+.task-badge.solid.status.done { background-color: #2ecc71; }
+
+.task-badge.solid.priority.low { background-color: #27ae60; }
+.task-badge.solid.priority.medium { background-color: #f1c40f; }
+.task-badge.solid.priority.high { background-color: #e74c3c; }
+
+/* Pill variant - used on the task details page (light background, colored text). */
+.task-badge.pill {
+  padding: 4px 10px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.task-badge.pill.status.to-do { background: #e9f3ff; color: #1976d2; }
+.task-badge.pill.status.in-progress { background: #fff5e6; color: #f57c00; }
+.task-badge.pill.status.done { background: #e8f5e9; color: #2e7d32; }
+
+.task-badge.pill.priority.low { background: #e8f5e9; color: #2e7d32; }
+.task-badge.pill.priority.medium { background: #fff3e0; color: #ef6c00; }
+.task-badge.pill.priority.high { background: #ffebee; color: #c62828; }

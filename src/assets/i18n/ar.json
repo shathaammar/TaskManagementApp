@@ -32,7 +32,13 @@
     "DESCRIPTION_LABEL": "الوصف",
     "DESCRIPTION_PLACEHOLDER": "أدخل الوصف",
     "SAVE": "حفظ",
-    "CANCEL": "إلغاء"
+    "CANCEL": "إلغاء",
+    "ERRORS": {
+      "TITLE_REQUIRED": "العنوان مطلوب.",
+      "TITLE_TOO_LONG": "يجب ألا يتجاوز العنوان 100 حرف.",
+      "PRIORITY_REQUIRED": "الأولوية مطلوبة.",
+      "DESCRIPTION_TOO_LONG": "يجب ألا يتجاوز الوصف 500 حرف."
+    }
   },
   "TASK_DETAILS": {
     "TITLE": "تفاصيل المهمة",
