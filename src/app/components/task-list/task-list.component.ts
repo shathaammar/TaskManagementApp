@@ -20,7 +20,6 @@ export class TaskListComponent implements OnInit {
   selectedStatus = '';
   selectedPriority = '';
 
-  /** Set while the delete-confirmation dialog is open for this task; null otherwise. */
   taskPendingDelete: TaskModel | null = null;
 
   readonly statuses = TASK_STATUSES;

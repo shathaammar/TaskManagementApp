@@ -1,6 +1,7 @@
 {
   "APP": {
-    "TITLE": "Tasks Management Application"
+    "TITLE": "Tasks Management Application",
+    "TASKLIST_TITLE": "Tasks List"
   },
   "TASK_LIST": {
     "SUBTITLE": "{{count}} task(s)",

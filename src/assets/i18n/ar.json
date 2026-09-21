@@ -1,6 +1,7 @@
 {
   "APP": {
-    "TITLE": "تطبيق إدارة المهام"
+    "TITLE": "تطبيق إدارة المهام",
+    "TASKLIST_TITLE": "قائمة المهام"
   },
   "TASK_LIST": {
     "SUBTITLE": "{{count}} مهمة",
